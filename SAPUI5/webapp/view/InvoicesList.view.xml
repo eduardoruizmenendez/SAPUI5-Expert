@@ -2,18 +2,36 @@
             xmlns="sap.m" 
             xmlns:mvc="sap.ui.core.mvc">
 
-    <List   headerText="{i18n>invoiceListTitle}" 
+    <List   id="invoiceList"   
+            headerText="{i18n>invoiceListTitle}" 
             class="sapUiResponsiveMargin" 
             width="auto" 
             items="{invoices>/Invoices}">
+        <headerToolbar>
+            <Toolbar >
+                <Title text="{i18n>invoiceListTitle}" />
+                <ToolbarSpacer />
+                <SearchField width="50%" search=".onFilterinvoices" />
+            </Toolbar>
+        </headerToolbar>
         <items>
             <ObjectListItem title="{invoices>Quantity} x {invoices>ProductName}"
                             number="{ parts : [
                                                 {path : 'invoices>ExtendedPrice'},
-                                                {path : 'currency>/eur' }
+                                                {path : 'currency>/usd' }
                                               ],
-                                      type: 'sap.ui.model.type.Currency'
-                                    }" />
+                                      type: 'sap.ui.model.type.Currency',
+                                      formatOptions:{
+                                          showMeasure:false
+                                        }
+                                    }"
+                            numberUnit="{currency>/usd}"
+                            numberState="{= ${invoices>ExtendedPrice} > 50 ? 'Success' : 'Error' }">
+                <firstStatus>
+                    <ObjectStatus text="{ path: 'invoices>Status',
+                                          formatter: '.invoicesFormatter.invoiceStatus'}" />
+                </firstStatus>
+            </ObjectListItem>
         </items>
     </List>
 
