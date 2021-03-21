@@ -6,7 +6,7 @@
 
     <Panel headerText="{i18n>HelloPanelHeader}" class="sapUiResponsiveMargin" width="auto">   
         <content>         
-            <Button id="HelloDialogButton" 
+            <Button id="helloDialogButton" 
                     text="{i18n>helloDialogBut}" 
                     press=".onOpenDialog" 
                     class="SapUiSmallMarginEnd" 

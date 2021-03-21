@@ -1,20 +1,20 @@
 //@ts-nocheck
 sap.ui.define([
     "logaligroup/SAPUI5/model/InvoicesFormatter",
-    "sap/ui/resource/ResourceModel"
+    "sap/ui/model/resource/ResourceModel"
 ],
     /**
      * 
-     * @param {typeof sap.ui.resource.ResourceModel} ResourceModel 
+     * @param {typeof sap.ui.model.resource.ResourceModel} ResourceModel 
      */
     function (InvoicesFormatter, ResourceModel) {
-        "use strict";
+        //"use strict";
 
         QUnit.module("Invoices Status", {
 
             beforeEach: function () {
                 this._oResourceModel = new ResourceModel({
-                    bundleUrl: sap.ui.require.toUrl("logaligroup/SAPUI5") + "/i18n/i18n.properties"
+                    bundleUrl : sap.ui.require.toUrl("logaligroup/SAPUI5") + "/i18n/i18n.properties"
                 });
             },
 
@@ -24,18 +24,18 @@ sap.ui.define([
 
         });
 
-        QUnit.test("Should return the Invoice status", function(){
+        QUnit.test("Should return the Invoice status", function(assert){
 
             let oModel = this.stub();
 
             oModel.withArgs("i18n").returns(this._oResourceModel);
 
             let oViewStub = {
-                getModel: oModel
+                getModel : oModel
             };
 
             let oControllerStub = {
-                getView: this.stub().returns(oViewStub)
+                getView : this.stub().returns(oViewStub)
             };
 
             let fnIsolatedFormatter = InvoicesFormatter.invoiceStatus.bind(oControllerStub);
