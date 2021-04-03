@@ -39,6 +39,17 @@ sap.ui.define([
                     const oList = this.getView().byId("invoiceList");
                     const oBinding = oList.getBinding("items");
                     oBinding.filter(arrayFilter);
+                },
+
+                navigateToDetails: function(oEvent){
+                    const oItem = oEvent.getSource();
+                    const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                    //Pass model binded to the context to NavigationPreloadManager. We need to delete the trailing slash
+                    oRouter.navTo("Details", {
+                        invoicePath: window.encodeURIComponent(oItem.getBindingContext("northwind").getPath().substr(1))
+                    });
                 }
-            });
+
+            }
+        );
     });

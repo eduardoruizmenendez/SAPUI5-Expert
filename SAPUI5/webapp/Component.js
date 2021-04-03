@@ -28,11 +28,14 @@ sap.ui.define(
                 //Asignación de modelo a vista
                 this.setModel(Models.createRecipient());
 
-                //Set i18n
-                var i18nModel = new ResourceModel({ bundleName: "logaligroup.SAPUI5.i18n.i18n" });
-                this.setModel(i18nModel, "i18n");
+                //Set i18n => Commented due to model being declared in metadata, manifest.json
+                //var i18nModel = new ResourceModel({ bundleName: "logaligroup.SAPUI5.i18n.i18n" });
+                //this.setModel(i18nModel, "i18n");
 
                 this._helloDialog = new HelloDialog(this.getRootControl());
+
+                //Create the views based on the url
+                this.getRouter().initialize();
             },
 
             exit: function(){
